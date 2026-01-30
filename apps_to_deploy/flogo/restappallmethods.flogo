@@ -1,0 +1,904 @@
+{
+  "imports": [
+    "github.com/project-flogo/flow",
+    "github.com/project-flogo/contrib/activity/noop",
+    "github.com/project-flogo/contrib/activity/actreturn",
+    "github.com/tibco/flogo-general/src/app/General/trigger/rest",
+    "github.com/project-flogo/contrib/function/string"
+  ],
+  "name": "restappAllMethods",
+  "description": "",
+  "version": "1.0.0",
+  "type": "flogo:app",
+  "appModel": "1.1.1",
+  "tags": [],
+  "triggers": [
+    {
+      "ref": "#rest",
+      "name": "tibco-wi-rest",
+      "description": "Simple REST Trigger",
+      "settings": {
+        "port": 9999,
+        "APISpecUpdate": false,
+        "swagger": "",
+        "swaggerVersion": "v2",
+        "apiVersion": "1.0.0",
+        "secureConnection": false,
+        "serverKey": "",
+        "caCertificate": ""
+      },
+      "id": "ReceiveHTTPMessage",
+      "handlers": [
+        {
+          "description": "",
+          "settings": {
+            "Method": "GET",
+            "reqType": "application/json",
+            "Path": "/galaxy/universe/earth/Asia/India/Maharashtra/{city}",
+            "OutputValidation": false
+          },
+          "action": {
+            "ref": "github.com/project-flogo/flow",
+            "settings": {
+              "flowURI": "res://flow:GET_Flow"
+            },
+            "input": {
+              "pathParams": "=$.pathParams",
+              "headers": "=$.headers"
+            },
+            "output": {
+              "data": "=$.data",
+              "code": "=$.code"
+            }
+          },
+          "reply": {
+            "code": 200,
+            "configureResponseCodes": false,
+            "message": {}
+          },
+          "schemas": {
+            "reply": {
+              "data": {
+                "type": "json",
+                "value": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"response\":{\"type\":\"string\"}}}",
+                "fe_metadata": "{\n    \"response\":\"\"\n}",
+                "feSchemaMap": {}
+              },
+              "responseBody": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "fe_metadata": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "feSchemaMap": {}
+              }
+            },
+            "output": {
+              "pathParams": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"city\":{\"type\":\"string\"}},\"required\":[]}",
+                "fe_metadata": "[{\"parameterName\":\"city\",\"type\":\"string\"}]"
+              },
+              "headers": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}},\"required\":[]}",
+                "fe_metadata": "[{\"parameterName\":\"Accept\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Accept-Charset\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Accept-Encoding\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Content-Type\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Content-Length\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Connection\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Cookie\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Pragma\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false}]"
+              }
+            }
+          },
+          "name": "GET_Flow"
+        },
+        {
+          "description": "",
+          "settings": {
+            "Method": "POST",
+            "reqType": "application/json",
+            "Path": "/USA/Texas/HarrisCounty/Houston/Stafford/Camden",
+            "OutputValidation": false
+          },
+          "action": {
+            "ref": "github.com/project-flogo/flow",
+            "settings": {
+              "flowURI": "res://flow:POST_Flow"
+            },
+            "input": {
+              "headers": "=$.headers",
+              "body": "=$.body"
+            },
+            "output": {
+              "code": "=$.code",
+              "data": "=$.data"
+            }
+          },
+          "reply": {
+            "code": 200,
+            "configureResponseCodes": false,
+            "message": {}
+          },
+          "schemas": {
+            "reply": {
+              "data": {
+                "type": "json",
+                "value": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"response_string\":{\"type\":\"string\"}}}",
+                "fe_metadata": "{\n    \"response_string\":\"\"\n}",
+                "feSchemaMap": {}
+              },
+              "responseBody": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "fe_metadata": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "feSchemaMap": {}
+              }
+            },
+            "output": {
+              "headers": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}},\"required\":[]}",
+                "fe_metadata": "[{\"parameterName\":\"Accept\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Accept-Charset\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Accept-Encoding\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Content-Type\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Content-Length\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Connection\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Cookie\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Pragma\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false}]"
+              },
+              "body": {
+                "type": "json",
+                "value": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"new_resident\":{\"type\":\"string\"}}}",
+                "fe_metadata": "{\n    \"new_resident\":\"\"\n}",
+                "feSchemaMap": {}
+              }
+            }
+          },
+          "name": "POST_Flow"
+        },
+        {
+          "description": "",
+          "settings": {
+            "Method": "PUT",
+            "reqType": "application/json",
+            "Path": "/country/state/county/city/community/{cname}",
+            "OutputValidation": false
+          },
+          "action": {
+            "ref": "github.com/project-flogo/flow",
+            "settings": {
+              "flowURI": "res://flow:PUT_Flow_h_qp"
+            },
+            "input": {
+              "pathParams": "=$.pathParams",
+              "headers": "=$.headers",
+              "body": "=$.body"
+            },
+            "output": {
+              "code": "=$.code",
+              "data": "=$.data"
+            }
+          },
+          "reply": {
+            "code": 200,
+            "configureResponseCodes": false,
+            "message": {}
+          },
+          "schemas": {
+            "reply": {
+              "data": {
+                "type": "json",
+                "value": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"response_string\":{\"type\":\"string\"}}}",
+                "fe_metadata": "{\"response_string\":\"\"}",
+                "feSchemaMap": {}
+              },
+              "responseBody": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "fe_metadata": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "feSchemaMap": {}
+              }
+            },
+            "output": {
+              "queryParams": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"QP4\":{\"type\":\"boolean\"},\"QP3\":{\"type\":\"number\"},\"QP2\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[]}",
+                "fe_metadata": "[{\"parameterName\":\"QP4\",\"type\":\"boolean\",\"repeating\":\"\",\"required\":\"\"},{\"parameterName\":\"QP3\",\"type\":\"number\",\"repeating\":\"\",\"required\":\"\"},{\"parameterName\":\"QP2\",\"type\":\"string\",\"repeating\":\"true\",\"required\":\"\"}]"
+              },
+              "pathParams": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"cname\":{\"type\":\"string\"}},\"required\":[]}",
+                "fe_metadata": "[{\"parameterName\":\"cname\",\"type\":\"string\"}]"
+              },
+              "headers": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"H3\":{\"type\":\"boolean\"},\"H2\":{\"type\":\"number\"},\"H1\":{\"type\":\"string\"},\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}},\"required\":[\"H2\",\"H1\"]}",
+                "fe_metadata": "[{\"parameterName\":\"H3\",\"type\":\"boolean\",\"repeating\":\"\",\"required\":\"\"},{\"parameterName\":\"H2\",\"type\":\"number\",\"repeating\":\"\",\"required\":\"true\"},{\"parameterName\":\"H1\",\"type\":\"string\",\"repeating\":\"\",\"required\":\"true\"},{\"parameterName\":\"Accept\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Accept-Charset\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Accept-Encoding\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Content-Type\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Content-Length\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Connection\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Cookie\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Pragma\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false}]"
+              },
+              "body": {
+                "type": "json",
+                "value": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"name_to_be_updated\":{\"type\":\"string\"}}}",
+                "fe_metadata": "{\n    \"name\":\"\",\n    \"name_to_be_updated\":\"\"\n}",
+                "feSchemaMap": {}
+              }
+            }
+          },
+          "name": "PUT_Flow_h_qp"
+        },
+        {
+          "description": "Add description",
+          "settings": {
+            "Method": "DELETE",
+            "reqType": "application/json",
+            "Path": "/delpath",
+            "OutputValidation": false
+          },
+          "action": {
+            "ref": "github.com/project-flogo/flow",
+            "settings": {
+              "flowURI": "res://flow:DELETE_Flow"
+            },
+            "input": {
+              "headers": "=$.headers",
+              "body": "=$.body"
+            },
+            "output": {
+              "code": "=$.code",
+              "data": "=$.data"
+            }
+          },
+          "reply": {
+            "code": 200,
+            "configureResponseCodes": false,
+            "message": {}
+          },
+          "schemas": {
+            "reply": {
+              "data": {
+                "type": "json",
+                "value": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"res\":{\"type\":\"string\"}}}",
+                "fe_metadata": "{\n    \"res\":\"\"\n}",
+                "feSchemaMap": {}
+              },
+              "responseBody": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "fe_metadata": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "feSchemaMap": {}
+              }
+            },
+            "output": {
+              "headers": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}},\"required\":[]}",
+                "fe_metadata": "[{\"parameterName\":\"Accept\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Accept-Charset\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Accept-Encoding\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Content-Type\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Content-Length\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Connection\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Cookie\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false},{\"parameterName\":\"Pragma\",\"type\":\"string\",\"repeating\":\"false\",\"required\":\"false\",\"visible\":false}]"
+              },
+              "body": {
+                "type": "json",
+                "value": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"delete_body_string\":{\"type\":\"string\"}}}",
+                "fe_metadata": "{\n    \"delete_body_string\":\"\"\n}",
+                "feSchemaMap": {}
+              }
+            }
+          },
+          "name": "DELETE_Flow"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "flow:GET_Flow",
+      "data": {
+        "name": "GET_Flow",
+        "description": "",
+        "links": [
+          {
+            "id": 1,
+            "from": "StartActivity",
+            "to": "Return",
+            "type": "label",
+            "label": "StartActivity to Return"
+          }
+        ],
+        "tasks": [
+          {
+            "id": "StartActivity",
+            "name": "StartActivity",
+            "description": "NoOp Activity",
+            "activity": {
+              "ref": "#noop"
+            }
+          },
+          {
+            "id": "Return",
+            "name": "Return",
+            "description": "Simple Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "data": {
+                    "mapping": {
+                      "response": "=string.concat(\"Response from city: \", $flow.pathParams.city)"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "fe_metadata": "eyJTdGFydEFjdGl2aXR5Ijp7IngiOjEwMCwieSI6MTAwfSwiUmV0dXJuIjp7IngiOjIzMCwieSI6MTM3fX0=",
+        "metadata": {
+          "input": [
+            {
+              "name": "pathParams",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"city\":{\"type\":\"string\"}}"
+              }
+            },
+            {
+              "name": "headers",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}}"
+              }
+            },
+            {
+              "name": "requestURI",
+              "type": "string"
+            },
+            {
+              "name": "method",
+              "type": "string"
+            }
+          ],
+          "output": [
+            {
+              "name": "code",
+              "type": "integer"
+            },
+            {
+              "name": "data",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"response\":{\"type\":\"string\"}}"
+              }
+            }
+          ],
+          "fe_metadata": {
+            "input": "{\"type\":\"object\",\"title\":\"ReceiveHTTPMessage\",\"properties\":{\"pathParams\":{\"type\":\"object\",\"properties\":{\"city\":{\"type\":\"string\"}},\"required\":[]},\"headers\":{\"type\":\"object\",\"properties\":{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}},\"required\":[]},\"requestURI\":{\"type\":\"string\",\"required\":false},\"method\":{\"type\":\"string\",\"required\":false}}}",
+            "output": "{\"type\":\"object\",\"title\":\"Inputs\",\"properties\":{\"code\":{\"type\":\"integer\",\"required\":false},\"data\":{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"response\":{\"type\":\"string\"}}}},\"required\":[]}"
+          }
+        },
+        "explicitReply": true
+      }
+    },
+    {
+      "id": "flow:POST_Flow",
+      "data": {
+        "name": "POST_Flow",
+        "description": "",
+        "links": [
+          {
+            "id": 1,
+            "from": "StartActivity",
+            "to": "Return",
+            "type": "label",
+            "label": "StartActivity to Return"
+          }
+        ],
+        "tasks": [
+          {
+            "id": "StartActivity",
+            "name": "StartActivity",
+            "description": "NoOp Activity",
+            "activity": {
+              "ref": "#noop"
+            }
+          },
+          {
+            "id": "Return",
+            "name": "Return",
+            "description": "Simple Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 202,
+                  "data": {
+                    "mapping": {
+                      "response_string": "=string.concat(\"The new resident with name: \", $flow.body.new_resident,\" has been added to the community\")"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "fe_metadata": "eyJTdGFydEFjdGl2aXR5Ijp7IngiOjEwMCwieSI6MTAwfSwiUmV0dXJuIjp7IngiOjE3NiwieSI6ODF9fQ==",
+        "metadata": {
+          "input": [
+            {
+              "name": "headers",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}}"
+              }
+            },
+            {
+              "name": "body",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"new_resident\":{\"type\":\"string\"}}"
+              }
+            },
+            {
+              "name": "requestURI",
+              "type": "string"
+            },
+            {
+              "name": "method",
+              "type": "string"
+            }
+          ],
+          "output": [
+            {
+              "name": "code",
+              "type": "integer"
+            },
+            {
+              "name": "data",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"response_string\":{\"type\":\"string\"}}"
+              }
+            }
+          ],
+          "fe_metadata": {
+            "input": "{\"type\":\"object\",\"title\":\"ReceiveHTTPMessage\",\"properties\":{\"headers\":{\"type\":\"object\",\"properties\":{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}},\"required\":[]},\"body\":{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"new_resident\":{\"type\":\"string\"}}},\"requestURI\":{\"type\":\"string\",\"required\":false},\"method\":{\"type\":\"string\",\"required\":false}}}",
+            "output": "{\"type\":\"object\",\"title\":\"Inputs\",\"properties\":{\"code\":{\"type\":\"integer\",\"required\":false},\"data\":{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"response_string\":{\"type\":\"string\"}}}},\"required\":[]}"
+          }
+        },
+        "explicitReply": true
+      }
+    },
+    {
+      "id": "flow:PUT_Flow_h_qp",
+      "data": {
+        "name": "PUT_Flow_h_qp",
+        "description": "",
+        "links": [
+          {
+            "id": 1,
+            "from": "StartActivity",
+            "to": "Return",
+            "type": "label",
+            "label": "StartActivity to Return"
+          }
+        ],
+        "tasks": [
+          {
+            "id": "StartActivity",
+            "name": "StartActivity",
+            "description": "NoOp Activity",
+            "activity": {
+              "ref": "#noop"
+            }
+          },
+          {
+            "id": "Return",
+            "name": "Return",
+            "description": "Simple Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 202,
+                  "data": {
+                    "mapping": {
+                      "response_string": "=string.concat(\"The following resident: \", $flow.body.name,\" has been updated with: \", $flow.body.name_to_be_updated)"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "fe_metadata": "eyJTdGFydEFjdGl2aXR5Ijp7IngiOjEwMCwieSI6MTAwfSwiUmV0dXJuIjp7IngiOjE2NSwieSI6MTc4fX0=",
+        "metadata": {
+          "input": [
+            {
+              "name": "queryParams",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"QP4\":{\"type\":\"boolean\"},\"QP3\":{\"type\":\"number\"},\"QP2\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}"
+              }
+            },
+            {
+              "name": "pathParams",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"cname\":{\"type\":\"string\"}}"
+              }
+            },
+            {
+              "name": "headers",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"H3\":{\"type\":\"boolean\"},\"H2\":{\"type\":\"number\"},\"H1\":{\"type\":\"string\"},\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}}"
+              }
+            },
+            {
+              "name": "body",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"name\":{\"type\":\"string\"},\"name_to_be_updated\":{\"type\":\"string\"}}"
+              }
+            },
+            {
+              "name": "requestURI",
+              "type": "string"
+            },
+            {
+              "name": "method",
+              "type": "string"
+            }
+          ],
+          "output": [
+            {
+              "name": "code",
+              "type": "integer"
+            },
+            {
+              "name": "data",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"response_string\":{\"type\":\"string\"}}"
+              }
+            }
+          ],
+          "fe_metadata": {
+            "input": "{\"type\":\"object\",\"title\":\"ReceiveHTTPMessage\",\"properties\":{\"queryParams\":{\"type\":\"object\",\"properties\":{\"QP4\":{\"type\":\"boolean\"},\"QP3\":{\"type\":\"number\"},\"QP2\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[]},\"pathParams\":{\"type\":\"object\",\"properties\":{\"cname\":{\"type\":\"string\"}},\"required\":[]},\"headers\":{\"type\":\"object\",\"properties\":{\"H3\":{\"type\":\"boolean\"},\"H2\":{\"type\":\"number\"},\"H1\":{\"type\":\"string\"},\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}},\"required\":[\"H2\",\"H1\"]},\"body\":{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"name_to_be_updated\":{\"type\":\"string\"}}},\"requestURI\":{\"type\":\"string\",\"required\":false},\"method\":{\"type\":\"string\",\"required\":false}}}",
+            "output": "{\"type\":\"object\",\"title\":\"Inputs\",\"properties\":{\"code\":{\"type\":\"integer\",\"required\":false},\"data\":{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"response_string\":{\"type\":\"string\"}}}},\"required\":[]}"
+          }
+        },
+        "explicitReply": true
+      }
+    },
+    {
+      "id": "flow:DELETE_Flow",
+      "data": {
+        "name": "DELETE_Flow",
+        "description": "Add description",
+        "links": [
+          {
+            "id": 1,
+            "from": "StartActivity",
+            "to": "Return",
+            "type": "label",
+            "label": "StartActivity to Return"
+          }
+        ],
+        "tasks": [
+          {
+            "id": "StartActivity",
+            "name": "StartActivity",
+            "description": "NoOp Activity",
+            "activity": {
+              "ref": "#noop"
+            }
+          },
+          {
+            "id": "Return",
+            "name": "Return",
+            "description": "Simple Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": 200,
+                  "data": {
+                    "mapping": {
+                      "res": "=string.concat(\"The following resource has been deleted: \",\"test flogo\")"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "fe_metadata": "eyJTdGFydEFjdGl2aXR5Ijp7IngiOjEwMCwieSI6MTAwfSwiUmV0dXJuIjp7IngiOjIwNCwieSI6MTQ5fX0=",
+        "metadata": {
+          "input": [
+            {
+              "name": "headers",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}}"
+              }
+            },
+            {
+              "name": "body",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"delete_body_string\":{\"type\":\"string\"}}"
+              }
+            },
+            {
+              "name": "requestURI",
+              "type": "string"
+            },
+            {
+              "name": "method",
+              "type": "string"
+            }
+          ],
+          "output": [
+            {
+              "name": "code",
+              "type": "integer"
+            },
+            {
+              "name": "data",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"res\":{\"type\":\"string\"}}"
+              }
+            }
+          ],
+          "fe_metadata": {
+            "input": "{\"type\":\"object\",\"title\":\"ReceiveHTTPMessage\",\"properties\":{\"headers\":{\"type\":\"object\",\"properties\":{\"Accept\":{\"type\":\"string\",\"visible\":false},\"Accept-Charset\":{\"type\":\"string\",\"visible\":false},\"Accept-Encoding\":{\"type\":\"string\",\"visible\":false},\"Content-Type\":{\"type\":\"string\",\"visible\":false},\"Content-Length\":{\"type\":\"string\",\"visible\":false},\"Connection\":{\"type\":\"string\",\"visible\":false},\"Cookie\":{\"type\":\"string\",\"visible\":false},\"Pragma\":{\"type\":\"string\",\"visible\":false}},\"required\":[]},\"body\":{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"delete_body_string\":{\"type\":\"string\"}}},\"requestURI\":{\"type\":\"string\",\"required\":false},\"method\":{\"type\":\"string\",\"required\":false}}}",
+            "output": "{\"type\":\"object\",\"title\":\"Inputs\",\"properties\":{\"code\":{\"type\":\"integer\",\"required\":false},\"data\":{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"res\":{\"type\":\"string\"}}}},\"required\":[]}"
+          }
+        },
+        "explicitReply": true
+      }
+    }
+  ],
+  "properties": [],
+  "connections": {},
+  "contrib": "W3sicmVmIjoiZ2l0aHViLmNvbS90aWJjby9mbG9nby1nZW5lcmFsL3NyYy9hcHAvR2VuZXJhbCIsImlkIjoiR2VuZXJhbCIsInZlcnNpb24iOiIxLjYuMyIsInRhZyI6IjEuNi4zLWIwMSIsIm5hbWUiOiJHZW5lcmFsIiwiczNsb2NhdGlvbiI6IlRpYmNvL0dlbmVyYWwiLCJpc1VzZXJFeHRlbnNpb24iOmZhbHNlfV0=",
+  "metadata": {
+    "endpoints": [
+      {
+        "protocol": "http",
+        "port": "9999",
+        "spec": {
+          "name": "restappAllMethods",
+          "version": "1.0.0"
+        },
+        "title": "ReceiveHTTPMessage",
+        "swagger": {
+          "swagger": "2.0",
+          "info": {
+            "title": "restappAllMethods",
+            "version": "1.0.0",
+            "description": "Simple REST Trigger"
+          },
+          "paths": {
+            "/galaxy/universe/earth/Asia/India/Maharashtra/{city}": {
+              "get": {
+                "summary": "GET_Flow",
+                "operationId": "get_galaxy_universe_earth_Asia_India_Maharashtra_city",
+                "parameters": [
+                  {
+                    "name": "city",
+                    "in": "path",
+                    "description": "Request parameter",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Rest Response",
+                    "schema": {
+                      "$ref": "#/definitions/schema1"
+                    }
+                  }
+                }
+              }
+            },
+            "/USA/Texas/HarrisCounty/Houston/Stafford/Camden": {
+              "post": {
+                "summary": "POST_Flow",
+                "operationId": "post_USA_Texas_HarrisCounty_Houston_Stafford_Camden",
+                "parameters": [
+                  {
+                    "name": "body",
+                    "in": "body",
+                    "description": "request body parameter",
+                    "required": true,
+                    "schema": {
+                      "$ref": "#/definitions/schema2"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Rest Response",
+                    "schema": {
+                      "$ref": "#/definitions/schema3"
+                    }
+                  }
+                },
+                "consumes": [
+                  "application/json"
+                ]
+              }
+            },
+            "/country/state/county/city/community/{cname}": {
+              "put": {
+                "summary": "PUT_Flow_h_qp",
+                "operationId": "put_country_state_county_city_community_cname",
+                "parameters": [
+                  {
+                    "name": "QP4",
+                    "in": "query",
+                    "description": "Request parameter",
+                    "required": false,
+                    "type": "boolean"
+                  },
+                  {
+                    "name": "QP3",
+                    "in": "query",
+                    "description": "Request parameter",
+                    "required": false,
+                    "type": "number"
+                  },
+                  {
+                    "name": "QP2",
+                    "in": "query",
+                    "description": "Request parameter",
+                    "required": false,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "collectionFormat": "multi"
+                  },
+                  {
+                    "name": "cname",
+                    "in": "path",
+                    "description": "Request parameter",
+                    "required": true,
+                    "type": "string"
+                  },
+                  {
+                    "name": "H3",
+                    "in": "header",
+                    "description": "Request parameter",
+                    "required": false,
+                    "type": "boolean"
+                  },
+                  {
+                    "name": "H2",
+                    "in": "header",
+                    "description": "Request parameter",
+                    "required": true,
+                    "type": "number"
+                  },
+                  {
+                    "name": "H1",
+                    "in": "header",
+                    "description": "Request parameter",
+                    "required": true,
+                    "type": "string"
+                  },
+                  {
+                    "name": "body",
+                    "in": "body",
+                    "description": "request body parameter",
+                    "required": true,
+                    "schema": {
+                      "$ref": "#/definitions/schema4"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Rest Response",
+                    "schema": {
+                      "$ref": "#/definitions/schema3"
+                    }
+                  }
+                },
+                "consumes": [
+                  "application/json"
+                ]
+              }
+            },
+            "/delpath": {
+              "delete": {
+                "summary": "DELETE_Flow",
+                "operationId": "delete_delpath",
+                "parameters": [
+                  {
+                    "name": "body",
+                    "in": "body",
+                    "description": "request body parameter",
+                    "required": true,
+                    "schema": {
+                      "$ref": "#/definitions/schema5"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Rest Response",
+                    "schema": {
+                      "$ref": "#/definitions/schema6"
+                    }
+                  }
+                },
+                "description": "Add description",
+                "consumes": [
+                  "application/json"
+                ]
+              }
+            }
+          },
+          "definitions": {
+            "schema1": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string"
+                }
+              }
+            },
+            "schema2": {
+              "type": "object",
+              "properties": {
+                "new_resident": {
+                  "type": "string"
+                }
+              }
+            },
+            "schema3": {
+              "type": "object",
+              "properties": {
+                "response_string": {
+                  "type": "string"
+                }
+              }
+            },
+            "schema4": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "name_to_be_updated": {
+                  "type": "string"
+                }
+              }
+            },
+            "schema5": {
+              "type": "object",
+              "properties": {
+                "delete_body_string": {
+                  "type": "string"
+                }
+              }
+            },
+            "schema6": {
+              "type": "object",
+              "properties": {
+                "res": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "flogoVersion": "2.25.2"
+  }
+}

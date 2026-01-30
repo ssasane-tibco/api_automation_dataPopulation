@@ -1,0 +1,28 @@
+# ============================================================
+# TIBCO Platform CP API Automation - Python Dependencies
+# ============================================================
+# Installation: pip install -r requirements.txt
+# Python 3.8+ required
+# ============================================================
+
+# Core HTTP and API Libraries
+# ----------------------------
+requests==2.31.0         # HTTP library for REST API calls
+urllib3==2.0.7          # HTTP client with connection pooling
+
+# HTML/XML Parsing
+# ----------------
+beautifulsoup4==4.12.2  # HTML/XML parsing for SAML responses
+
+# Compatibility
+# -------------
+certifi>=2023.7.22      # SSL certificate bundle
+charset-normalizer>=3.3.0  # Character encoding detection
+idna>=3.4               # Internationalized Domain Names
+soupsieve>=2.5          # CSS selector library
+
+# Web Automation (for EULA acceptance)
+# -------------------------------------
+selenium==4.16.0        # Browser automation for user registration
+webdriver-manager==4.0.1  # Automatic ChromeDriver management
+

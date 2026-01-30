@@ -1,0 +1,68 @@
+# Configuration with credentials
+config.json
+
+# Generated command files
+dataplane_*_commands.txt
+*_commands.txt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.idea/
+.venv/
+pycache/
+
+.DS_Store (for macOS)
+*.log
+.env (if you use environment variable files)
+.mypy_cache/
+.pytest_cache/
+.vscode/ (if you use VSCode)
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+
+
+# HAR files (network traces)
+*.har
+activation-server
+bwce-capability
+resource-har
+status
+
+# Screenshots/Images
+*.png
+*.jpg
+*.jpeg
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Pytest
+
+# Coverage
+.coverage
+htmlcov/
+

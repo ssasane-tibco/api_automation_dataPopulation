@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-01-19 17:53:13",
+  "tenant_host": "https://aduvedu10.cp1-my.localhost.dataplanes.pro",
+  "bwce_apps": [
+    {
+      "app_name": "BWCETimerLog",
+      "app_id": "d5n23lfem55s73caub30",
+      "dataplane_name": "Dp-Auto-Test",
+      "dataplane_id": "d5n21u46falc73f60r7g",
+      "capability_id": "d5n23746falc73f60rdg",
+      "build_id": "5b09855074344e9cbbf60f1bb79e7bde"
+    }
+  ],
+  "flogo_apps": [
+    {
+      "app_name": "FlogoFailureApp",
+      "app_id": "d5n24cfem55s73caub3g",
+      "dataplane_name": "Dp-Auto-Test",
+      "dataplane_id": "d5n21u46falc73f60r7g",
+      "capability_id": "d5n23bc6falc73f60reg",
+      "build_id": "7854acf98f7b4707af0cde45a8aa73f8"
+    }
+  ]
+}
