@@ -15,7 +15,6 @@ def main():
     admin_host = config.get('admin_host')
     idp_host = config.get('idp_host')
     target_prefixes = config.get('target_prefixes', [config.get('target_prefix', 'DefaultPrefix')])
-    invite_email = config.get('invite_user_email')
 
     # Safe access to user query params with defaults
     user_params = config.get('user_query_params', {
@@ -25,7 +24,15 @@ def main():
         'person': ''
     })
 
-    for target_prefix in target_prefixes:
+    for prefix_entry in target_prefixes:
+        if isinstance(prefix_entry, dict):
+            target_prefix = prefix_entry.get('prefix')
+            invite_email = prefix_entry.get('user_email')
+        else:
+            target_prefix = prefix_entry
+            invite_email = config.get('invite_user_email')
+        config['target_prefix'] = target_prefix
+
         # Track status for summary (reset for each prefix)
         summary = {
             "Admin Login": "Pending",
@@ -300,20 +307,21 @@ def main():
                             poll_interval = status_check_config.get('poll_interval_seconds', 10)
 
                             for i in range(1, dp_count + 1):
-                                print(f"\n[*] Registering Dataplane {i}/{dp_count}")
-
-                                # Create unique config for this dataplane
                                 dp_config = dataplane_config.copy()
 
-                                # Generate unique names with suffix
-                                if dp_count > 1:
-                                    base_name = dataplane_config.get('name', 'Dp1')
-                                    base_namespace = dataplane_config.get('namespace', 'default')
-                                    base_sa = dataplane_config.get('serviceAccountName', 'tibco-sa')
+                                # Append target_prefix to the dataplane name, namespace, and serviceAccountName
+                                base_name = dataplane_config.get('name', 'Dp1')
+                                base_namespace = dataplane_config.get('namespace', 'default')
+                                base_sa = dataplane_config.get('serviceAccountName', 'tibco-sa')
 
-                                    dp_config['name'] = f"{base_name}-{i}"
-                                    dp_config['namespace'] = f"{baseNamespace}-{i}"
-                                    dp_config['serviceAccountName'] = f"{base_sa}-{i}"
+                                if dp_count > 1:
+                                    dp_config['name'] = f"{target_prefix}-{base_name}-{i}"
+                                    dp_config['namespace'] = f"{target_prefix}-{base_namespace}-{i}"
+                                    dp_config['serviceAccountName'] = f"{target_prefix}-{base_sa}-{i}"
+                                else:
+                                    dp_config['name'] = f"{target_prefix}-{base_name}"
+                                    dp_config['namespace'] = f"{target_prefix}-{base_namespace}"
+                                    dp_config['serviceAccountName'] = f"{target_prefix}-{base_sa}"
 
                                 print(f"    Name: {dp_config['name']}")
                                 print(f"    Namespace: {dp_config['namespace']}")
